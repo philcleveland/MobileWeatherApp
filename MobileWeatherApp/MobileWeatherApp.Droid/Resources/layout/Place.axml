@@ -4,13 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
   <TextView
-    android:id="@+id/txtPlace"
-    android:layout_width="fill_parent"
+    android:id="@+id/Title"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="25dp"/>
-  
-  <ListView
-        android:id="@+id/listDays"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+    android:textSize="24dp"/>
+
+  <Button
+    android:id="@+id/AddBtn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Add"
+    android:textSize="10dp"
+    />
 </LinearLayout>

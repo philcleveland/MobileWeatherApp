@@ -52,6 +52,7 @@
     <Compile Include="AlertsActivity.cs" />
     <Compile Include="DailyForecastActivity.cs" />
     <Compile Include="HomeScreenActivity.cs" />
+    <Compile Include="PlaceView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeeklyForecastActivity.cs" />
@@ -73,9 +74,15 @@
     <AndroidResource Include="Resources\layout\Alerts.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\WeeklyForecastItem.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Place.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Main.axml">
+    <AndroidResource Include="Resources\layout\HomeScreen.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -520,7 +527,7 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="($(TargetFrameworkIdentifier) == '.NETStandard' And ($(TargetFrameworkVersion) == 'v1.2' Or $(TargetFrameworkVersion) == 'v1.3' Or $(TargetFrameworkVersion) == 'v1.4' Or $(TargetFrameworkVersion) == 'v1.5' Or $(TargetFrameworkVersion) == 'v1.6')) Or ($(TargetFrameworkProfile) == 'Profile32')">
+    <When Condition="$(TargetFrameworkProfile) == 'Profile32'">
       <ItemGroup>
         <Reference Include="System.Reactive.WindowsRuntime">
           <HintPath>..\..\packages\Rx-WinRT\lib\portable-win81+wpa81\System.Reactive.WindowsRuntime.dll</HintPath>
@@ -561,7 +568,7 @@
         </Reference>
       </ItemGroup>
     </When>
-    <When Condition="($(TargetFrameworkIdentifier) == '.NETStandard' And ($(TargetFrameworkVersion) == 'v1.2' Or $(TargetFrameworkVersion) == 'v1.3' Or $(TargetFrameworkVersion) == 'v1.4' Or $(TargetFrameworkVersion) == 'v1.5' Or $(TargetFrameworkVersion) == 'v1.6')) Or ($(TargetFrameworkProfile) == 'Profile32')">
+    <When Condition="$(TargetFrameworkProfile) == 'Profile32'">
       <ItemGroup>
         <Reference Include="System.Reactive.Windows.Threading">
           <HintPath>..\..\packages\Rx-Xaml\lib\portable-win81+wpa81\System.Reactive.Windows.Threading.dll</HintPath>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="hello">Get Current Temperature</string>
+	<string name="search">Search</string>
 	<string name="app_name">MobileWeatherApp.Droid</string>
 </resources>
