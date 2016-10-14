@@ -1,42 +1,60 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace MobileWeatherApp
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using Akavache;
+using System.Reactive.Linq;
+using Newtonsoft.Json;
+
+namespace MobileWeatherApp.Droid
 {
-    public class InMemPlacesRepository : IPlacesRepository
+    public class SharedPreferencesRepository : IPlacesRepository
     {
-        Dictionary<string, MyPlaceViewModel> _db = new Dictionary<string, MyPlaceViewModel>();
-
+        readonly ISharedPreferences _sp;
+        public SharedPreferencesRepository(ISharedPreferences sp)
+        {
+            _sp = sp;
+            
+        }
         public void AddPlace(MyPlaceViewModel place)
         {
-            if(!_db.ContainsKey(place.Name))
+            using (var editor = _sp.Edit())
             {
-                _db.Add(place.Name, place);
+                editor.PutString(place.Name, JsonConvert.SerializeObject(place));
             }
-            
         }
 
         public IEnumerable<MyPlaceViewModel> GetAllPlaces()
         {
-            return _db.Values.ToList();
+            List<MyPlaceViewModel> places = new List<MyPlaceViewModel>();
+            foreach (var p in _sp.All)
+            {
+                places.Add(JsonConvert.DeserializeObject<MyPlaceViewModel>(p.Value.ToString()));
+            }
+            return places;
         }
 
         public void RemovePlace(string placeName)
         {
-            if (_db.ContainsKey(placeName))
+            using (var editor = _sp.Edit())
             {
-                _db.Remove(placeName);
+                editor.Remove(placeName);
             }
         }
     }
+
     //public class AkavachePlacesRepository : IPlacesRepository
     //{
+        
     //    public AkavachePlacesRepository()
     //    {
-
     //        BlobCache.ApplicationName = "MobileWeatherApp";
     //    }
     //    public void AddPlace(MyPlaceViewModel place)
@@ -51,6 +69,8 @@ namespace MobileWeatherApp
 
     //    public IObservable<IEnumerable<MyPlaceViewModel>> GetAllPlaces()
     //    {
+    //        //return new List<MyPlaceViewModel>();
+            
     //        return BlobCache.UserAccount.GetAllObjects<MyPlaceViewModel>();
     //    }
     //}

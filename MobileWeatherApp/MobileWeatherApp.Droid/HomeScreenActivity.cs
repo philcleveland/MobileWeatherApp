@@ -8,17 +8,19 @@ using Android.Widget;
 using Android.OS;
 using Android.Locations;
 using ReactiveUI;
+using System.Reactive.Linq;
+using Splat;
 
 namespace MobileWeatherApp.Droid
 {
     [Activity(Label = "MobileWeatherApp.Droid", MainLauncher = true, Icon = "@drawable/icon")]
-    public class HomeScreenActivity : ReactiveActivity<HomeScreenViewModel>
+    public class HomeScreenActivity :  ReactiveActivity<HomeScreenViewModel>
     {
         const string DarkSkyApiKey = "API_KEY_HERE";
 
-        public Button SearchButton { get; private set; }
+        public ImageButton SearchButton { get; private set; }
         public EditText SearchText { get; private set; }
-        public ListView Places { get; private set; }
+        
         public ListView MyPlaces { get; private set; }
 
         protected override void OnCreate(Bundle bundle)
@@ -28,41 +30,49 @@ namespace MobileWeatherApp.Droid
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.HomeScreen);
 
-            var placeRepo = new InMemPlacesRepository();
-            ViewModel = new HomeScreenViewModel(placeRepo);
-
-            SearchButton = FindViewById<Button>(Resource.Id.btnSearch);
-            SearchText = FindViewById<EditText>(Resource.Id.editPlace);
-            Places = FindViewById<ListView>(Resource.Id.listPlaces);
+            //SearchButton = FindViewById<ImageButton>(Resource.Id.btnSearch);
+            //SearchText = FindViewById<EditText>(Resource.Id.editPlace);
+            
             MyPlaces = FindViewById<ListView>(Resource.Id.myPlaces);
 
+            ISharedPreferences sp = GetSharedPreferences("MyPlacesRepo", FileCreationMode.Append);
+            //_sp.GetString("")
 
+            var placeRepo = new SharedPreferencesRepository(sp);
+            ViewModel = new HomeScreenViewModel(placeRepo);
+            
+            Locator.CurrentMutable.RegisterConstant(new BoolToVisibilityConverter(), typeof(IBindingTypeConverter));
 
-            this.Bind(ViewModel, vm => vm.SearchTerm, v => v.SearchText.Text);
-            this.BindCommand(ViewModel, vm => vm.Search, v => v.SearchButton);
+            
 
-            var adapter = new ReactiveListAdapter<PlaceViewModel>(
-                ViewModel.Places,
-                (vm, parent) => new PlaceView(vm, this, parent));
-            Places.Adapter = adapter;
+            //Observable
+            //        .FromEventPattern<EventHandler<AdapterView.ItemSelectedEventArgs>, AdapterView.ItemSelectedEventArgs>(h => Places.ItemSelected += h,
+            //                                                                                                              h => Places.ItemSelected -= h)
+            //        .Where(x=> ViewModel.Places.Count > 0)
+            //        .Select(x=> x.EventArgs)
+            //        .Subscribe(async e =>
+            //        {
+            //            if (ViewModel.Places.Count > e.Position)
+            //            {
+            //                await ViewModel.Places[e.Position].Add.ExecuteAsync(null);
+            //            }
+            //        });
 
-            ViewModel.MyPlaces.AddRange(placeRepo.GetAllPlaces());
+            
 
+            
 
-            this.WhenAnyValue(x => x.ViewModel.MyPlaces)
-                .Subscribe(myPlaces =>
-                {
-                    var myPlacesAdapter = new ReactiveListAdapter<MyPlaceViewModel>(
-                        new ReactiveList<MyPlaceViewModel>(myPlaces),
-                        (vm, parent) => new MyPlaceView(vm, this, parent));
-                });
+            var myPlacesAdapter = new ReactiveListAdapter<MyPlaceViewModel>(
+                ViewModel.MyPlaces,
+                (vm, parent) => new MyPlaceView(vm, this, parent));
+            MyPlaces.Adapter = myPlacesAdapter;
 
-            MyPlaces.ItemClick += (s, e) =>
+            MyPlaces.ItemSelected += (s, e) =>
             {
                 var intent = new Intent(this, typeof(WeeklyForecastActivity));
-                intent.PutExtra("name", ViewModel.Places[e.Position].Name);
-                intent.PutExtra("latitude", ViewModel.Places[e.Position].Latitude);
-                intent.PutExtra("longitude", ViewModel.Places[e.Position].Longitude);
+                intent.PutExtra("name", ViewModel.MyPlaces[e.Position].Name);
+                intent.PutExtra("latitude", ViewModel.MyPlaces[e.Position].Latitude);
+                intent.PutExtra("longitude", ViewModel.MyPlaces[e.Position].Longitude);
                 StartActivity(intent);
             };
 
@@ -95,7 +105,7 @@ namespace MobileWeatherApp.Droid
 
             //};
         }
-
+        
         protected override void OnResume()
         {
             base.OnResume();

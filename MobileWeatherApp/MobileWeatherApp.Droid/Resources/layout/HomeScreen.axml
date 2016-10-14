@@ -1,36 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-  <LinearLayout
-      android:orientation="horizontal"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content">
-    <EditText
-        android:id="@+id/editPlace"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="s" />
-  </LinearLayout>
-  <ListView
-      android:id="@+id/listPlaces"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent" />
+
+  <ImageButton
+      android:id="@+id/AddBtn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:src="@drawable/add"
+    />
 
   <ListView
-        android:id="@+id/myPlaces"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+      android:id="@+id/myPlaces"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"/>
+  
   <!--<ImageView
-      android:src="@drawable/darksky"
-      android:layout_width="wrap_content"
-      android:layout_height="43.5dp"
-      android:id="@+id/imageView1"
-      android:layout_marginRight="0.0dp"
-      android:layout_marginTop="0.0dp" />-->
-</LinearLayout>
+        android:src="@drawable/darksky"
+        android:layout_width="wrap_content"
+        android:layout_height="43.5dp"
+        android:id="@+id/imageView1"
+        android:layout_toEndOf="@id/myPlaces" />-->
+</RelativeLayout>

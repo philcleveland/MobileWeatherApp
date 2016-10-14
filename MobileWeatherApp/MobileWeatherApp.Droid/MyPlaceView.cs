@@ -23,6 +23,7 @@ namespace MobileWeatherApp.Droid
 
             this.OneWayBind(ViewModel, vm => vm.Name, v => v.Title.Text);
             this.BindCommand(ViewModel, vm => vm.Remove, v => v.RemoveBtn);
+            
         }
 
         public TextView Title { get; private set; }

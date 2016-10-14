@@ -22,10 +22,9 @@ namespace MobileWeatherApp.Droid
             ViewModel = viewModel;
 
             this.OneWayBind(ViewModel, vm => vm.Name, v => v.Title.Text);
-            this.BindCommand(ViewModel, vm => vm.Add, v => v.AddBtn);
         }
 
         public TextView Title { get; private set; }
-        public Button AddBtn { get; private set; }
+        public Button AddPlaceBtn { get; private set; }
     }
 }

@@ -13,7 +13,7 @@ using Android.Widget;
 namespace MobileWeatherApp.Droid
 {
     [Activity(Label = "WeeklyForecastActivity")]
-    public class WeeklyForecastActivity : Activity
+    public class WeeklyForecastActivity : ListActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
