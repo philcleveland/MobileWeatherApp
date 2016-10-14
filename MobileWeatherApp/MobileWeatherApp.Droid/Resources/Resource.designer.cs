@@ -67,8 +67,11 @@ namespace MobileWeatherApp.Droid
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f05000f
+			public const int AddBtn = 2131034127;
+			
 			// aapt resource value: 0x7f05000e
-			public const int AddBtn = 2131034126;
+			public const int RemoveBtn = 2131034126;
 			
 			// aapt resource value: 0x7f05000d
 			public const int Title = 2131034125;
@@ -85,8 +88,8 @@ namespace MobileWeatherApp.Droid
 			// aapt resource value: 0x7f050006
 			public const int lineTempDiff = 2131034118;
 			
-			// aapt resource value: 0x7f05000f
-			public const int listDays = 2131034127;
+			// aapt resource value: 0x7f050010
+			public const int listDays = 2131034128;
 			
 			// aapt resource value: 0x7f05000b
 			public const int listPlaces = 2131034123;
@@ -138,13 +141,16 @@ namespace MobileWeatherApp.Droid
 			public const int HomeScreen = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int Place = 2130903043;
+			public const int MyPlace = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int WeeklyForecast = 2130903044;
+			public const int Place = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int WeeklyForecastItem = 2130903045;
+			public const int WeeklyForecast = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int WeeklyForecastItem = 2130903046;
 			
 			static Layout()
 			{

@@ -28,7 +28,7 @@ namespace MobileWeatherApp.Droid
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.HomeScreen);
 
-            var placeRepo = new AkavachePlacesRepository();
+            var placeRepo = new InMemPlacesRepository();
             ViewModel = new HomeScreenViewModel(placeRepo);
 
             SearchButton = FindViewById<Button>(Resource.Id.btnSearch);
@@ -36,13 +36,26 @@ namespace MobileWeatherApp.Droid
             Places = FindViewById<ListView>(Resource.Id.listPlaces);
             MyPlaces = FindViewById<ListView>(Resource.Id.myPlaces);
 
+
+
             this.Bind(ViewModel, vm => vm.SearchTerm, v => v.SearchText.Text);
             this.BindCommand(ViewModel, vm => vm.Search, v => v.SearchButton);
-            
+
             var adapter = new ReactiveListAdapter<PlaceViewModel>(
                 ViewModel.Places,
                 (vm, parent) => new PlaceView(vm, this, parent));
             Places.Adapter = adapter;
+
+            ViewModel.MyPlaces.AddRange(placeRepo.GetAllPlaces());
+
+
+            this.WhenAnyValue(x => x.ViewModel.MyPlaces)
+                .Subscribe(myPlaces =>
+                {
+                    var myPlacesAdapter = new ReactiveListAdapter<MyPlaceViewModel>(
+                        new ReactiveList<MyPlaceViewModel>(myPlaces),
+                        (vm, parent) => new MyPlaceView(vm, this, parent));
+                });
 
             MyPlaces.ItemClick += (s, e) =>
             {

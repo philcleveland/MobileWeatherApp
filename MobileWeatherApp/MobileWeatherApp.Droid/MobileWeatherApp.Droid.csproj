@@ -52,6 +52,7 @@
     <Compile Include="AlertsActivity.cs" />
     <Compile Include="DailyForecastActivity.cs" />
     <Compile Include="HomeScreenActivity.cs" />
+    <Compile Include="MyPlaceView.cs" />
     <Compile Include="PlaceView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +79,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Place.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\MyPlace.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

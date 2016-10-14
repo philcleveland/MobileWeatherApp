@@ -1,24 +1,40 @@
-﻿using Akavache;
-using ReactiveUI;
+﻿using ReactiveUI;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
-
+using System;
 namespace MobileWeatherApp
 {
     public class HomeScreenViewModel : ReactiveObject
     {
         public HomeScreenViewModel(IPlacesRepository placeRepo)
         {
-            BlobCache.ApplicationName = "MobileWeatherApp";
-
             Places = new ReactiveList<PlaceViewModel>();
+            MyPlaces = new ReactiveList<MyPlaceViewModel>();
+
             Search = ReactiveCommand.CreateAsyncTask(async _ =>
             {
                 var places = await PlaceService.GetPlaceFromName(SearchTerm);
                 Places.Clear();
+
                 Places.AddRange(
-                    places.results.Select(x => new PlaceViewModel(x.formatted_address, x.geometry.location.lat, x.geometry.location.lng, placeRepo)));
+                    places.results.Select(x =>
+                    {
+                        var p = new PlaceViewModel(x.formatted_address, x.geometry.location.lat, x.geometry.location.lng, placeRepo);
+                        p.Add.Subscribe(y =>
+                        {
+                            var myPlace = new MyPlaceViewModel(p.Name, p.Latitude, p.Longitude);
+                            myPlace.Remove.Subscribe(z =>
+                            {
+                                placeRepo.RemovePlace(myPlace.Name);
+                                MyPlaces.Remove(myPlace);
+                            });
+                            placeRepo.AddPlace(myPlace);
+                            MyPlaces.Add(myPlace);
+                            Places.Clear();
+                        });
+                        return p;
+                    }));
             });
         }
 

@@ -6,7 +6,7 @@ namespace MobileWeatherApp
     public interface IPlacesRepository
     {
         void AddPlace(MyPlaceViewModel place);
-        IObservable<IEnumerable<MyPlaceViewModel>> GetAllPlaces();
+        IEnumerable<MyPlaceViewModel> GetAllPlaces();
         void RemovePlace(string placeName);
     }
 }

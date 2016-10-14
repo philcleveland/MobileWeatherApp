@@ -12,13 +12,10 @@ namespace MobileWeatherApp
             Latitude = latitude;
             Longitude = longitude;
 
-            Add = ReactiveCommand.CreateAsyncTask(async _ =>
-            {
-                await Task.Run(() => placeRepo.AddPlace(new MyPlaceViewModel(Name, Latitude, Longitude, placeRepo)));
-            });
+            Add = ReactiveCommand.Create();
         }
 
-        public ReactiveCommand<Unit> Add { get; private set; }
+        public ReactiveCommand<object> Add { get; private set; }
 
         public string Name { get; private set; }
         public double Latitude { get; private set; }
