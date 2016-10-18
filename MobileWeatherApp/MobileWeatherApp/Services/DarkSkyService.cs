@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MobileWeatherApp.Models;
 using ModernHttpClient;
-using System.Net.Http;
-using System.Net.Http.Headers;
+using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
-using Newtonsoft.Json;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
-namespace MobileWeatherApp
+namespace MobileWeatherApp.Services
 {
     public static class Languages
     {
@@ -89,14 +87,14 @@ namespace MobileWeatherApp
     //    [Get("")]
     //}
 
-    public class DarkSkyService
+    public class DarkSkyService : IDarkSkyService
     {
         static HttpClient httpClient = new HttpClient(new NativeMessageHandler());
         static RetryPolicy retryPolicy;
 
-        static DarkSkyService()
+        public DarkSkyService(string apiKey)
         {
-            httpClient.BaseAddress = new Uri("https://api.darksky.net/forecast/");
+            httpClient.BaseAddress = new Uri("https://api.darksky.net/forecast/" + apiKey + "/");
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -110,9 +108,9 @@ namespace MobileWeatherApp
                                    });
         }
 
-        public static async Task<Weather> GetWeatherData(string apiKey, double latitude, double longitude)
+        public async Task<Weather> GetWeatherData(double latitude, double longitude)
         {
-            var url = string.Format(@"{0}/{1},{2}?exclude=flags,minutely", apiKey, latitude, longitude);
+            var url = string.Format(@"{0},{1}?exclude=flags,minutely", latitude, longitude);
             System.Diagnostics.Debug.WriteLine(url);
 
             return await retryPolicy.ExecuteAsync(async () =>

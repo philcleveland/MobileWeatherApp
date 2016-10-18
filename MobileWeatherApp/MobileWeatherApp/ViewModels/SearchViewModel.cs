@@ -1,11 +1,11 @@
-﻿using ReactiveUI;
+﻿using Akavache;
+using MobileWeatherApp.Models;
+using MobileWeatherApp.Services;
+using ReactiveUI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MobileWeatherApp
 {
@@ -23,11 +23,18 @@ namespace MobileWeatherApp
             {
                 var places = await PlaceService.GetPlaceFromName(SearchTerm);
                 SearchResults.Clear();
-                SearchResults.AddRange(
-                    places
-                        .results
-                        .Select(r => CreateSearchResult(r)));
+                foreach (var item in places.results)
+                {
+                    SearchResults.Add(new PlaceViewModel(item.formatted_address, item.geometry.location.lat, item.geometry.location.lng));
+                }
             });
+
+            this.WhenAnyValue(x => x.SelectedPlace)
+                .Where(p => p != null)
+                .Subscribe(async pvm =>
+                {
+                    await BlobCache.UserAccount.InsertObject(pvm.Name, new Place() { Name = pvm.Name, Latitude = pvm.Latitude, Longitude = pvm.Longitude});
+                });
         }
 
         public ReactiveCommand<Unit> Search { get; private set; }
@@ -46,15 +53,17 @@ namespace MobileWeatherApp
             set { this.RaiseAndSetIfChanged(ref _SearchResults, value); }
         }
 
+        private PlaceViewModel _SelectedPlace;
+        public PlaceViewModel SelectedPlace
+        {
+            get { return _SelectedPlace; }
+            set { this.RaiseAndSetIfChanged(ref _SelectedPlace, value); }
+        }
+
         private ObservableAsPropertyHelper<bool> _IsSearchResults;
         public bool IsSearchResults
         {
             get { return _IsSearchResults.Value; }
-        }
-
-        private PlaceViewModel CreateSearchResult(Result r)
-        {
-            return new PlaceViewModel(r.formatted_address, r.geometry.location.lat, r.geometry.location.lng);
         }
     }
 }

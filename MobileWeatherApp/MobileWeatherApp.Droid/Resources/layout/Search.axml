@@ -2,26 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-  <EditText
-        android:id="@+id/searchText"
+    <EditText
+        android:id="@+id/SearchText"
         android:hint="@string/search"
         android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+    <ImageButton
+        android:id="@+id/SearchButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-  />
-
-  <ImageButton
-      android:id="@+id/searchButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:src="@drawable/location"
-      android:layout_toRightOf="@id/searchText"
-    />
-
-  <ListView
-      android:id="@+id/searchResults"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/searchText"/>
-
+        android:src="@drawable/location"
+        android:layout_toRightOf="@id/SearchText" />
+    <ListView
+        android:id="@+id/SearchResults"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/SearchText" />
 </RelativeLayout>

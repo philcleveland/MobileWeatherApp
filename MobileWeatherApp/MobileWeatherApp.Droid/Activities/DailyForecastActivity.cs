@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace MobileWeatherApp.Droid
+namespace MobileWeatherApp.Droid.Activities
 {
     [Activity(Label = "DailyForecastActivity")]
     public class DailyForecastActivity : Activity

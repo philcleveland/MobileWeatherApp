@@ -49,16 +49,52 @@ namespace MobileWeatherApp.Droid
 			public const int Add = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int DarkSky = 2130837505;
+			public const int clearday = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int Icon = 2130837506;
+			public const int clearnight = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int Location = 2130837507;
+			public const int cloudy = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int partlycloudyday = 2130837508;
+			public const int DarkSky = 2130837508;
+			
+			// aapt resource value: 0x7f020005
+			public const int fog = 2130837509;
+			
+			// aapt resource value: 0x7f020006
+			public const int hail = 2130837510;
+			
+			// aapt resource value: 0x7f020007
+			public const int Icon = 2130837511;
+			
+			// aapt resource value: 0x7f020008
+			public const int Location = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public const int partlycloudyday = 2130837513;
+			
+			// aapt resource value: 0x7f02000a
+			public const int partlycloudynight = 2130837514;
+			
+			// aapt resource value: 0x7f02000b
+			public const int rain = 2130837515;
+			
+			// aapt resource value: 0x7f02000c
+			public const int sleet = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int snow = 2130837517;
+			
+			// aapt resource value: 0x7f02000e
+			public const int thunderstorm = 2130837518;
+			
+			// aapt resource value: 0x7f02000f
+			public const int tornado = 2130837519;
+			
+			// aapt resource value: 0x7f020010
+			public const int wind = 2130837520;
 			
 			static Drawable()
 			{
@@ -73,41 +109,62 @@ namespace MobileWeatherApp.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050009
-			public const int AddBtn = 2131034121;
+			// aapt resource value: 0x7f05000a
+			public const int AddPlaceBtn = 2131034122;
+			
+			// aapt resource value: 0x7f050013
+			public const int DaysOfTheWeekList = 2131034131;
+			
+			// aapt resource value: 0x7f050015
+			public const int IconImage = 2131034133;
+			
+			// aapt resource value: 0x7f05000b
+			public const int MyPlacesList = 2131034123;
 			
 			// aapt resource value: 0x7f05000e
-			public const int AddPlaceBtn = 2131034126;
+			public const int RemoveBtn = 2131034126;
+			
+			// aapt resource value: 0x7f050010
+			public const int SearchButton = 2131034128;
+			
+			// aapt resource value: 0x7f050011
+			public const int SearchResults = 2131034129;
+			
+			// aapt resource value: 0x7f05000f
+			public const int SearchText = 2131034127;
+			
+			// aapt resource value: 0x7f050016
+			public const int TextDay = 2131034134;
+			
+			// aapt resource value: 0x7f050018
+			public const int TextHighTemp = 2131034136;
+			
+			// aapt resource value: 0x7f050017
+			public const int TextLowTemp = 2131034135;
+			
+			// aapt resource value: 0x7f050012
+			public const int TextPlace = 2131034130;
+			
+			// aapt resource value: 0x7f050019
+			public const int TextSummary = 2131034137;
 			
 			// aapt resource value: 0x7f05000d
-			public const int RemoveBtn = 2131034125;
+			public const int Title = 2131034125;
 			
-			// aapt resource value: 0x7f05000c
-			public const int Title = 2131034124;
+			// aapt resource value: 0x7f050009
+			public const int imageView1 = 2131034121;
 			
 			// aapt resource value: 0x7f050003
 			public const int imgIcon = 2131034115;
 			
-			// aapt resource value: 0x7f05000b
-			public const int layout = 2131034123;
+			// aapt resource value: 0x7f05000c
+			public const int layout = 2131034124;
 			
 			// aapt resource value: 0x7f050006
 			public const int lineTempDiff = 2131034118;
 			
-			// aapt resource value: 0x7f050013
-			public const int listDays = 2131034131;
-			
-			// aapt resource value: 0x7f05000a
-			public const int myPlaces = 2131034122;
-			
-			// aapt resource value: 0x7f050010
-			public const int searchButton = 2131034128;
-			
-			// aapt resource value: 0x7f050011
-			public const int searchResults = 2131034129;
-			
-			// aapt resource value: 0x7f05000f
-			public const int searchText = 2131034127;
+			// aapt resource value: 0x7f050014
+			public const int linearLayout = 2131034132;
 			
 			// aapt resource value: 0x7f050008
 			public const int txtAlerts = 2131034120;
@@ -129,9 +186,6 @@ namespace MobileWeatherApp.Droid
 			
 			// aapt resource value: 0x7f050002
 			public const int txtTime = 2131034114;
-			
-			// aapt resource value: 0x7f050012
-			public const int txtWeekly = 2131034130;
 			
 			static Id()
 			{

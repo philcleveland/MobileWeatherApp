@@ -128,6 +128,8 @@ NUGET
       Rx-WinRT (>= 2.2.5) - framework: portable-win81+wpa81, winv4.5, wpv8.0
       Rx-Xaml (>= 2.2.5) - framework: >= net45, portable-win81+wpa81, winv4.5, wpv8.0
       Splat (>= 1.4 < 2.0)
+    reactiveui-events (6.5)
+      Rx-Main (>= 2.2.5)
     refit (3.0.1)
       Microsoft.AspNetCore.WebUtilities (>= 1.0) - framework: >= net46, dnxcore50, >= netstandard13
       NETStandard.Library (>= 1.6) - framework: >= net46, dnxcore50, netstandard11, >= netstandard13
@@ -164,6 +166,13 @@ NUGET
     Rx-Xaml (2.2.5) - framework: >= net45, portable-win81+wpa81, winv4.5, wpv8.0
       Rx-Main (>= 2.2.5)
     Splat (1.6.2)
+    SQLitePCL.raw (0.9.3)
+      System.Collections (>= 4.0.10)
+      System.Collections.Concurrent (>= 4.0.10)
+      System.Resources.ResourceManager (>= 4.0)
+      System.Runtime (>= 4.0.20)
+      System.Runtime.InteropServices (>= 4.0.20)
+      System.Text.Encoding (>= 4.0.10)
     SQLitePCL.raw_basic (0.8.6)
       System.Collections (>= 4.0.10)
       System.Collections.Concurrent (>= 4.0.10)
@@ -250,7 +259,7 @@ NUGET
       System.Runtime (>= 4.1) - framework: >= netstandard13
       System.Runtime.Extensions (>= 4.1) - framework: >= netstandard13
       System.Runtime.InteropServices (>= 4.1) - framework: >= netstandard13
-    System.IO (4.1) - framework: >= net463, dnxcore50, netstandard10, >= netstandard10, netstandard11, >= netstandard13
+    System.IO (4.1) - framework: >= net463, dnxcore50, netstandard10, >= netstandard10, netstandard11, netstandard13, >= netstandard13, netstandard14, >= netstandard16
       Microsoft.NETCore.Platforms (>= 1.0.1) - framework: dnxcore50, netstandard10, netstandard13, >= netstandard15
       Microsoft.NETCore.Targets (>= 1.0.1) - framework: dnxcore50, netstandard10, netstandard13, >= netstandard15
       System.Runtime (>= 4.1) - framework: dnxcore50, netstandard10, netstandard13, >= netstandard15
@@ -409,7 +418,7 @@ NUGET
       Microsoft.NETCore.Platforms (>= 1.0.1) - framework: dnxcore50, netstandard10, netstandard13, >= netstandard15
       Microsoft.NETCore.Targets (>= 1.0.1) - framework: dnxcore50, netstandard10, netstandard13, >= netstandard15
       System.Runtime (>= 4.1) - framework: dnxcore50, netstandard10, netstandard13, >= netstandard15
-    System.Runtime.Handles (4.0.1) - framework: >= net46, dnxcore50, netstandard13, >= netstandard13, >= netstandard15
+    System.Runtime.Handles (4.0.1) - framework: >= net46, dnxcore50, netstandard13, >= netstandard13, >= netstandard16
       Microsoft.NETCore.Platforms (>= 1.0.1) - framework: >= netstandard13
       Microsoft.NETCore.Targets (>= 1.0.1) - framework: >= netstandard13
       System.Runtime (>= 4.1) - framework: >= netstandard13

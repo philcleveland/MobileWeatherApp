@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MobileWeatherApp.Models;
 using ModernHttpClient;
+using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
+using System;
+using System.Net.Http;
 using System.Net.Http.Headers;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
 
-namespace MobileWeatherApp
+namespace MobileWeatherApp.Services
 {
     public static class PlaceService
     {

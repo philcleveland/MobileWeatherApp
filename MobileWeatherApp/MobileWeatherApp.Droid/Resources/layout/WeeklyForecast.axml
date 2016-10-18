@@ -3,21 +3,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-  <TextView
-      android:id="@+id/txtPlace"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:textSize="25dp" />
-
-  <TextView
-        android:id="@+id/txtWeekly"
+    <TextView
+        android:id="@+id/TextPlace"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Weekly"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
         android:textSize="25dp" />
-
-  <ListView
-      android:id="@+id/listDays"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent" />
+    
+    <ListView
+        android:id="@+id/DaysOfTheWeekList"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 </LinearLayout>

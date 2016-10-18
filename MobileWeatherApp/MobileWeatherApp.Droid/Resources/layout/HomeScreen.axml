@@ -2,24 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-
+  <ImageView
+        android:src="@drawable/darksky"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_gravity="right"
+        android:id="@+id/imageView1"/>
+  
   <ImageButton
-      android:id="@+id/AddBtn"
+      android:id="@+id/AddPlaceBtn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="center_horizontal"
       android:src="@drawable/add"
-    />
-
+      android:layout_centerVertical="false"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="35dp"
+      android:layout_below="@id/imageView1"/>
   <ListView
-      android:id="@+id/myPlaces"
+      android:id="@+id/MyPlacesList"
       android:layout_width="fill_parent"
-      android:layout_height="wrap_content"/>
+      android:layout_height="wrap_content"
+      android:layout_below="@id/AddPlaceBtn"
+      android:layout_centerInParent="true"
+      android:layout_margin="30dp"/>
   
-  <!--<ImageView
-        android:src="@drawable/darksky"
-        android:layout_width="wrap_content"
-        android:layout_height="43.5dp"
-        android:id="@+id/imageView1"
-        android:layout_toEndOf="@id/myPlaces" />-->
 </RelativeLayout>

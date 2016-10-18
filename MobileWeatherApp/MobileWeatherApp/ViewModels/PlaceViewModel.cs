@@ -5,6 +5,10 @@ namespace MobileWeatherApp
 {
     public class PlaceViewModel : ReactiveObject
     {
+        public PlaceViewModel()
+        {
+
+        }
         public PlaceViewModel(string name, double latitude, double longitude)
         {
             Name = name;
@@ -12,8 +16,8 @@ namespace MobileWeatherApp
             Longitude = longitude;
         }
 
-        public string Name { get; private set; }
-        public double Latitude { get; private set; }
-        public double Longitude { get; private set; }
+        public string Name { get;  set; }
+        public double Latitude { get;  set; }
+        public double Longitude { get;  set; }
     }
 }
