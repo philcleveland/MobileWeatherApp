@@ -1,8 +1,11 @@
-﻿using MobileWeatherApp.Models;
+﻿using Akavache;
+using MobileWeatherApp.Models;
 using MobileWeatherApp.Services;
 using ReactiveUI;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Reactive.Linq;
 
 namespace MobileWeatherApp
 {
@@ -17,7 +20,8 @@ namespace MobileWeatherApp
             this.WhenAnyValue(x => x.Activator)
                 .Subscribe(async _ =>
                 {
-                    var weather = await darkSky.GetWeatherData(Place.Latitude, Place.Longitude);
+                    var weather = await GetWeatherAsync(Place, darkSky);
+                    
                     Days.AddRange(
                         weather
                             .daily
@@ -39,6 +43,17 @@ namespace MobileWeatherApp
         {
             get { return _Days; }
             set { this.RaiseAndSetIfChanged(ref _Days, value); }
+        }
+
+        private async Task<Weather> GetWeatherAsync(Place place, IDarkSkyService darkSky)
+        {
+            return await darkSky.GetWeatherData(Place.Latitude, Place.Longitude);
+
+            //var offset = new DateTimeOffset(DateTime.UtcNow);
+            //offset.AddHours(1);
+            //return await BlobCache.UserAccount.GetOrCreateObject("weather_" + Place.Name,
+            //                 () => darkSky.GetWeatherData(Place.Latitude, Place.Longitude).Result, 
+            //                 offset);
         }
     }
 }

@@ -82,11 +82,18 @@ namespace MobileWeatherApp.Services
         public static string SI { get { return "si"; } }
     }
 
-    //public interface IDarkSkyApi
-    //{
-    //    [Get("")]
-    //}
 
+    /// <summary>
+    /// 
+    /// 
+    /// Resources:
+    /// https://darksky.net/dev/docs
+    /// 
+    /// example forecast url
+    /// https://api.darksky.net/forecast/0123456789abcdef9876543210fedcba/42.3601,-71.0589,409467600?exclude=currently,flags
+    /// 
+    /// 
+    /// </summary>
     public class DarkSkyService : IDarkSkyService
     {
         static HttpClient httpClient = new HttpClient(new NativeMessageHandler());
@@ -94,7 +101,7 @@ namespace MobileWeatherApp.Services
 
         public DarkSkyService(string apiKey)
         {
-            httpClient.BaseAddress = new Uri("https://api.darksky.net/forecast/" + apiKey + "/");
+            httpClient.BaseAddress = new Uri(string.Format("https://api.darksky.net/forecast/{0}/", apiKey));
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -130,6 +137,6 @@ namespace MobileWeatherApp.Services
             });
         }
 
-        //https://api.darksky.net/forecast/0123456789abcdef9876543210fedcba/42.3601,-71.0589,409467600?exclude=currently,flags
+        //
     }
 }

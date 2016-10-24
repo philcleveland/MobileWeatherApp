@@ -11,8 +11,8 @@ namespace MobileWeatherApp
             var date = new DateTime(1970, 1, 1, 0, 0, 0).AddSeconds(unixTime);
             
             Day = date.DayOfWeek.ToString().Substring(0, 3);
-            TemperatureMin = Math.Round(min, 0);
-            TemperatureMax = Math.Round(max, 0);
+            TemperatureMin = string.Format("{0}°", Math.Round(min, 0));
+            TemperatureMax = string.Format("{0}°", Math.Round(max, 0));
             Summary = summary;
 
             this.WhenAnyValue(x => x.Activator)
@@ -39,8 +39,8 @@ namespace MobileWeatherApp
         }
         public ViewModelActivator Activator { get; private set; }
         public string Day { get; private set; }
-        public double TemperatureMin { get; private set; }
-        public double TemperatureMax { get; private set; }
+        public string TemperatureMin { get; private set; }
+        public string TemperatureMax { get; private set; }
         public IBitmap Icon { get; private set; }
         public string Summary { get; private set; }
         

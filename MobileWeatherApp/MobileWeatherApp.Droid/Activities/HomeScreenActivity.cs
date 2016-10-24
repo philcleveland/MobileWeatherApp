@@ -5,7 +5,6 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using MobileWeatherApp.Droid.Views;
-using MobileWeatherApp.Models;
 using ReactiveUI;
 using Splat;
 using System;
@@ -15,6 +14,12 @@ using System.Reactive.Linq;
 
 namespace MobileWeatherApp.Droid.Activities
 {
+    /// <summary>
+    /// 
+    /// Resources:
+    /// Convert font awesome icons to png http://fa2png.io/
+    /// 
+    /// </summary>
     [Activity(Label = "MobileWeatherApp.Droid", MainLauncher = true, Icon = "@drawable/icon")]
     public class HomeScreenActivity : ReactiveActivity<HomeScreenViewModel>
     {
@@ -26,7 +31,7 @@ namespace MobileWeatherApp.Droid.Activities
         public HomeScreenActivity()
         {
             BlobCache.ApplicationName = "MobileWeatherApp";
-            
+            BlobCache.UserAccount.InsertObject("darksky", DarkSkyApiKey);
 
             this.WhenActivated(() =>
             {

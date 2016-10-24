@@ -22,7 +22,6 @@ namespace MobileWeatherApp.Droid.Activities
     [Activity(Label = "WeeklyForecastActivity")]
     public class WeeklyForecastActivity : ReactiveActivity<WeeklyForecastViewModel>
     {
-        const string DarkSkyApiKey = "DARK_SKY_API_KEY_HERE";
         public TextView TextPlace { get; private set; }
         public ListView DaysOfTheWeekList { get; private set; }
 
@@ -37,9 +36,13 @@ namespace MobileWeatherApp.Droid.Activities
                         .Subscribe(pos =>
                         {
                             var intent = new Intent(this, typeof(DailyForecastActivity));
+                            intent.PutExtra("lat", ViewModel.Place.Latitude);
+                            intent.PutExtra("lng", ViewModel.Place.Longitude);
                             StartActivity(intent);
                         })
                 );
+
+                this.OneWayBind(ViewModel, vm => vm.Place.Name, v => v.TextPlace.Text);
 
                 return disposable;
             });
@@ -53,13 +56,12 @@ namespace MobileWeatherApp.Droid.Activities
             this.WireUpControls();
 
             var place = await BlobCache.UserAccount.GetObject<Place>(Intent.GetStringExtra("place"));
+            var darkSkyKey = await BlobCache.UserAccount.GetObject<string>("darksky");
+            ViewModel = new WeeklyForecastViewModel(place, new DarkSkyService(darkSkyKey));
             
-            ViewModel = new WeeklyForecastViewModel(place, new DarkSkyService(DarkSkyApiKey));
-            this.OneWayBind(ViewModel, vm => vm.Place.Name, v => v.TextPlace.Text);
-
             var myPlacesAdapter = new ReactiveListAdapter<WeeklyForecastItemViewModel>(
-            ViewModel.Days,
-            (vm, parent) => new WeeklyForecastItemView(this, vm, parent));
+                ViewModel.Days,
+                (vm, parent) => new WeeklyForecastItemView(this, vm, parent));
             DaysOfTheWeekList.Adapter = myPlacesAdapter;
         }
     }

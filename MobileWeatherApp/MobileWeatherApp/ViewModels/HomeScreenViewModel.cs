@@ -15,10 +15,10 @@ namespace MobileWeatherApp
             this.WhenAnyValue(x => x.Activator)
                 .Subscribe(async _ =>
                 {
-                    var ptemp = await BlobCache.UserAccount.GetAllObjects<Place>();
+                    var places = await BlobCache.UserAccount.GetAllObjects<Place>();
 
                     MyPlaces.Clear();
-                    foreach (var p in ptemp)
+                    foreach (var p in places)
                     {
                         MyPlaces.Add(new PlaceViewModel(p.Name, p.Latitude, p.Longitude));
                     }

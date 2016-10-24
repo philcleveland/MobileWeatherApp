@@ -1,73 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/txtPlace"
-        android:layout_width="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <Spinner
+        android:id="@+id/MyPlacesList"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="25dp"
-        android:text="_Place" />
-    <TextView
-        android:id="@+id/txtDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="_Date" />
-    <TextView
-        android:id="@+id/txtTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="_time" />
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
-        <ImageView
-            android:id="@+id/imgIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/txtCurrentTemp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center_vertical"
-            android:text="_CurrentTemp°"
-            android:textSize="25dp" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
-        <TextView
-            android:id="@+id/txtMinTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left" />
-        <View
-            android:id="@+id/lineTempDiff"
-            android:layout_width="25dp"
-            android:layout_height="1dp"
-            android:background="@android:color/holo_blue_bright" />
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="30dp" />
     <!--<TextView
-          android:id="@+id/line"
-          android:paddingTop="5dip"
-          android:gravity="center_horizontal"
-          android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:background="#000" />-->
+        android:id="@+id/TextDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10/19/2016"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/MyPlacesList" />
+    <TextView
+        android:id="@+id/TextTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12:36"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/TextDate" />-->
+    <RelativeLayout
+        android:id="@+id/CenterLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        >
         <TextView
-            android:id="@+id/txtMaxTemp"
+            android:id="@+id/TextSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right" />
-    </LinearLayout>
+            android:text="Partly Cloudy"
+            android:layout_centerHorizontal="true" />
+        <TextView
+            android:id="@+id/TextCurrentTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="59°"
+            android:textSize="45dp"
+            android:layout_below="@id/TextSummary" />
+        <TextView
+            android:id="@+id/TextLowTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="34°"
+            android:textSize="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"/>
+        <ImageView
+            android:id="@+id/ImageIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/TextCurrentTemp" />
+        <TextView
+            android:id="@+id/TextHighTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="61°"
+            android:textSize="25dp"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
     <TextView
-        android:id="@+id/txtAlerts"
+        android:id="@+id/TextAlerts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CenterLayout" />
+</RelativeLayout>
