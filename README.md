@@ -1,2 +1,2 @@
 # MobileWeatherApp
-Mobile weather application for Android using Xamarin
+This app uses the DarkSky weather API (https://darksky.net/dev/) for weather data, but it would be fairly easy to switch out.  I haven't attacked iOS since I don't have a mac for compilation.  The DarkSky API returns pretty fast.  The reason I made this app is that going to weather.com via chrome on Android takes forever.  I really just want to configure a few places I care about (e.g. home city, ski resorts) so that I can quickly get information.
